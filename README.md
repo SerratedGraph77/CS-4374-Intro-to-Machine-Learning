@@ -6,6 +6,6 @@ This is a description of machine learning in my own terms.
 [Here is a link to the document](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Machine%20Learning%20Portfolio.pdf)
 
 ## C++ Exploration
-Placeholder for Program 1  
+In this program, we programmed various built-in functions from R in C++ from scratch, and compared the difficulty of hard coding and having it built-in.  
 [Here is the output](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Data%20Exploration.pdf)  
 [Here is the code](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/DataExploration.cpp)  
