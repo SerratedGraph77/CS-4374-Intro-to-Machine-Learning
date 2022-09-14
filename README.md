@@ -7,5 +7,5 @@ This is a description of machine learning in my own terms.
 
 ## C++ Exploration
 Placeholder for Program 1  
-[Here is the output](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Data%20Exploration.pdf)
-[Here is the code](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/DataExploration.cpp)
+[Here is the output](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Data%20Exploration.pdf)  
+[Here is the code](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/DataExploration.cpp)  
