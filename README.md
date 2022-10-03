@@ -18,3 +18,8 @@ In this Assignment, I:
 -Evaluated model performance  
 The Linear Regression portion can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Regression.pdf)  
 The Classification portion can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Classification.pdf)  
+
+## Machine Learning from Scratch
+Logistic Regression [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/LogisticRegression.cpp)  
+Naive Bayes [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Naive_Bayes.cpp) with header file [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Naive_Bayes.h)  
+Explanation in pdf [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ML%20Algorithms%20From%20Scratch.pdf)
