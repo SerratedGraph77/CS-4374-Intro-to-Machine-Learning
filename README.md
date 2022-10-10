@@ -29,3 +29,4 @@ Explanation in pdf [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Ma
 In this section we gained experience with machine learning using similarity models kNN and Decision Trees.  
 I used linear regression, kNN, and Decision Trees and compared their outputs to each other.  
 The pdf output for that is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Regression2%201.pdf)
+The writeup explaining how they work can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Searching%20for%20Similarity.pdf)
