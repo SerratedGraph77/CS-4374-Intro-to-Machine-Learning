@@ -23,3 +23,9 @@ The Classification portion can be found [here](https://github.com/SerratedGraph7
 Logistic Regression [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/LogisticRegression.cpp)  
 Naive Bayes [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Naive_Bayes.cpp) with header file [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Naive_Bayes.h)  
 Explanation in pdf [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ML%20Algorithms%20From%20Scratch.pdf)
+
+
+## Searching for Similarity  
+In this section we gained experience with machine learning using similarity models kNN and Decision Trees.  
+I used linear regression, kNN, and Decision Trees and compared their outputs to each other.  
+The pdf output for that is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Regression2%201.pdf)
