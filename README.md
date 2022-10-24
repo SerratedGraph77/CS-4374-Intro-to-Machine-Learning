@@ -29,4 +29,11 @@ Explanation in pdf [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Ma
 In this section we gained experience with machine learning using similarity models kNN and Decision Trees.  
 I used linear regression, kNN, and Decision Trees and compared their outputs to each other.  
 The pdf output for that is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Regression2%201.pdf)  
-The writeup explaining how they work can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Searching%20for%20Similarity.pdf)
+The writeup explaining how they work can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Searching%20for%20Similarity.pdf)  
+
+  
+  ## Kernel and Ensemble
+  For Regression, my R Notebook is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook1Regression.Rmd) and the pdf of output is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook1Regression%201.pdf)  
+  For Classification, my notebook is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook2Classification.Rmd) and the pdf output is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook2Classification.pdf)
+  For the Ensemble techniques, my R notebook was done with a partner and can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Ensemble_techniques.Rmd) the pdf output is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/6-Ensemble_techniques.pdf) and his narrative covering the techniques can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/narrative.pdf)  
+  
