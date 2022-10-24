@@ -1,0 +1,187 @@
+---
+title: "Notebook 1 Regression"
+output: 
+  word_document: default
+  html_notebook: default
+---
+Matthew Naughton
+
+CS 4375.003
+
+Portfolio: Kernel and Ensemble Methods
+
+
+```{r}
+set.seed(1234)
+df <- read.csv(file = 'housing.csv')
+
+# install.packages("ggplot2") ##uncomment and run if not installed
+# install.packages("e1071")   ##uncomment and run if not installed
+# install.packages("MASS")   ##uncomment and run if not installed
+library(ggplot2)
+library(e1071)
+library(MASS)
+
+ocean_factor <- as.factor(df$ocean_proximity)
+spec <- c(train=.6, test=.2, validate=.2)
+i <- sample(cut(1:nrow(df),
+                nrow(df)*cumsum(c(0,spec)), labels=names(spec)))
+train <- df[i=="train",]
+test <- df[i=="test",]
+vald <- df[i=="validate",]
+#i <- sample(1:nrow(df), nrow(df)*0.75, replace=FALSE)
+#train <- df[i,]
+#test <- df[-i,]
+```
+
+```{r}
+
+# Exploring the data:
+head(df)
+tail(df)
+plot(df$median_house_value, df$median_income, xlab="Median House Value", ylab="Median Income")
+str(df)
+names(df)
+summary(df)
+#range of value and income
+range(df$median_house_value)
+range(df$median_income)
+ggplot(data=df)+geom_histogram(mapping = aes(x=median_house_value))
+ggplot(df, aes(x=median_house_value, y=median_income))+
+  geom_point()+
+  stat_smooth()
+#Correlation:
+cor(df$median_house_value, df$median_income)
+```
+
+```{r}
+# Linear regression
+lm1 <- lm(median_house_value~median_income, data=train)
+pred <- predict(lm1, newdata=test)
+cor_lm1 <- cor(pred, test$median_house_value)
+mse_lm1 <- mean((pred - test$median_house_value)^2)
+```
+
+
+```{r}
+# SVM linear kernel
+svm1 <- svm(median_house_value~., data=train, kernel="linear", cost=10, scale=TRUE)
+summary(svm1)
+
+```
+
+
+```{r}
+# Evaluate linear kernel svm
+pred <- predict(svm1, newdata=test)
+cor_svm1 <- cor(pred, test$median_house_value[(1:length(pred))])
+mse_svm1 <- mean((pred - test$median_house_value[(1:length(pred))])^2)
+
+#table(pred, test$ocean_proximity[(1:length(pred))])
+#mean(pred==test$ocean_proximity[(1:length(pred))])
+#plot(svm1, test, median_income ~ median_house_value)
+```
+
+```{r}
+# Tune the svm
+tune_svm1 <- tune(svm, median_house_value~median_income, data=vald, kernel="linear",
+                  ranges=list(cost=c(0.001, 0.01, 0.1, 1, 5, 10)))
+summary(tune_svm1)
+```
+
+
+```{r}
+pred <- predict(tune_svm1$best.model, newdata=test)
+cor_svm1_tune <- cor(pred, test$median_house_value[(1:length(pred))])
+mse_svm1_tune <- mean((pred - test$median_house_value[(1:length(pred))])^2)
+```
+
+```{r}
+# SVM polynomial kernel
+
+svm2 <- svm(median_house_value~., data=train, kernel="polynomial", cost=10, scale=TRUE)
+summary(svm2)
+```
+
+
+```{r}
+# Evaluate the polynomial kernel
+
+pred <- predict(svm2, newdata=test)
+cor_svm2 <- cor(pred, test$median_house_value[(1:length(pred))])
+mse_svm2 <- mean((pred - test$median_house_value[(1:length(pred))])^2)
+
+#table(pred2, test$ocean_proximity[(1:length(pred2))])
+#mean(pred2==test$ocean_proximity[(1:length(pred2))])
+#plot(svm2, test, median_income ~ median_house_value)
+
+```
+
+```{r}
+# SVM radial kernel
+
+svm3 <- svm(median_house_value~., data=train, kernel="radial", cost=10, gamma=1, scale=TRUE)
+summary(svm3)
+```
+
+
+```{r}
+# Evaluate radial kernel
+pred <- predict(svm3, newdata=test)
+cor_svm3 <- cor(pred, test$median_house_value[(1:length(pred))])
+mse_svm3 <- mean((pred - test$median_house_value[(1:length(pred))])^2)
+
+#table(pred, test$median_house_value[(1:length(pre3))])
+#mean(pred==test$median_house_value[(1:length(pred))])
+#plot(svm3, test, median_house_value ~ median_income)
+```
+
+```{r}
+# Tuning the hyperparameters
+tune.out <- tune(svm, median_house_value~., data=vald, kernel="radial",
+                 ranges=list(cost=c(0.1,1,10),
+                             gamma=c(0.5,1,2,3,4)))
+summary(tune.out)
+```
+
+
+```{r}
+# Radial kernel with various cost and gamma values
+svm4 <- svm(median_house_value~., data=train, kernel = "radial", cost=100, gamma=0.5, scale=TRUE)
+summary(svm4)
+```
+
+```{r}
+# Evaluate Radial kernel with various cost/gamma values
+pred <- predict(svm4, newdata=test)
+cor_svm4 <- cor(pred, test$median_house_value[(1:length(pred))])
+mse_svm4 <- mean((pred - test$median_house_value[(1:length(pred))])^2)
+
+#table(pred, test$ocean_proximity[(1:length(pred))])
+#mean(pred==test$ocean_proximity[(1:length(pred))])
+#plot(svm4, test, median_income ~ median_house_value)
+
+```
+
+
+
+```{r}
+# correlation and mse for linear model
+cor_lm1
+mse_lm1
+# svm1 through svm4 correlation and mse
+cor_svm1
+mse_svm1
+cor_svm2
+mse_svm2
+cor_svm3
+mse_svm3
+cor_svm4
+mse_svm4
+
+
+```
+
+```{r}
+#Overall, the linear model had the best correlation value, I believe this is because the data is more linear and therefore attempts to polynomialize the data would make it worse.
+```

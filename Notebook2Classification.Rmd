@@ -1,0 +1,120 @@
+---
+title: "Notebook 2 Classification"
+output: 
+  word_document: default
+  html_notebook: default
+---
+Matthew Naughton
+
+CS 4375.003
+
+Portfolio: Kernel and Ensemble Methods
+
+```{r}
+# Load necessary libraries:
+# install.packages("ggplot2") ##uncomment and run if not installed
+# install.packages("e1071")   ##uncomment and run if not installed
+library(ggplot2)
+library(e1071)
+```
+
+```{r}
+set.seed(1234)
+df <- read.csv(file = 'housing.csv')
+
+# Divide the data into train and test 75/25
+i <- sample(1:nrow(df), nrow(df)*0.75, replace=FALSE)
+df$ocean_proximity <- as.factor(df$ocean_proximity)
+train <- df[i,]
+test <- df[-i,]
+```
+
+```{r}
+# Explore the data
+head(df)
+tail(df)
+names(df)
+str(df)
+summary(df)
+plot(df$median_house_value, df$median_income, xlab="Median House Value", ylab="Median Income")
+ggplot(data=df)+geom_histogram(mapping = aes(x=median_house_value))
+ggplot(data=df)+geom_histogram(mapping = aes(x=median_income))
+```
+
+
+```{r}
+# SVM linear
+svm1 <- svm(ocean_proximity~., data=train, kernel="linear", cost=10, scale=TRUE)
+summary(svm1)
+
+```
+
+```{r}
+# Evaluate and plot linear svm
+pred <- predict(svm1, newdata=test)
+table(pred, test$ocean_proximity[(1:length(pred))])
+
+mean(pred==test$ocean_proximity[(1:length(pred))])
+plot(svm1, test, median_income ~ median_house_value)
+```
+
+```{r}
+# SVM polynomial kernel
+
+svm2 <- svm(ocean_proximity~., data=train, kernel="polynomial", cost=10, scale=TRUE)
+summary(svm2)
+```
+
+
+```{r}
+# Evaluate the polynomial kernel
+
+pred2 <- predict(svm2, newdata=test)
+table(pred2, test$ocean_proximity[(1:length(pred2))])
+
+mean(pred2==test$ocean_proximity[(1:length(pred2))])
+plot(svm2, test, median_income ~ median_house_value)
+
+```
+
+
+```{r}
+# SVM radial kernel
+
+svm3 <- svm(ocean_proximity~., data=train, kernel="radial", cost=10, gamma=1, scale=TRUE)
+summary(svm3)
+```
+
+```{r}
+# Evaluate radial kernel
+pred3 <- predict(svm3, newdata=test)
+table(pred3, test$ocean_proximity[(1:length(pred3))])
+
+mean(pred3==test$ocean_proximity[(1:length(pred3))])
+plot(svm3, test, median_income ~ median_house_value)
+```
+
+```{r}
+# Radial kernel with various cost and gamma values
+svm4 <- svm(ocean_proximity~., data=train, kernel = "radial", cost=100, gamma=0.5, scale=TRUE)
+summary(svm4)
+```
+
+```{r}
+# Evaluate Radial kernel with various cost/gamma values
+pred4 <- predict(svm4, newdata=test)
+table(pred4, test$ocean_proximity[(1:length(pred4))])
+
+mean(pred4==test$ocean_proximity[(1:length(pred4))])
+plot(svm4, test, median_income ~ median_house_value)
+
+```
+
+```{r}
+# d. Provide analysis on why the results were most likely achieved
+#The c and gamma values are the biggest modifiers.
+#A small c value will create lower bias and high variance.
+#A larger gamma value will overfit with low bias and high variance, while a smaller gamma value could still have higher bias.
+#A polynomial kernel will allow us to map multiple lines to get a better fit
+#A radial kernel will work better when the data is more clustered.
+```

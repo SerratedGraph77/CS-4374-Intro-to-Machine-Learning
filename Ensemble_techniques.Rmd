@@ -1,0 +1,111 @@
+---
+title: "Ensemble techniques"
+author: "Yixin Sun, "
+date: "10-23-2022"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+
+### load the data
+```{r}
+adult <- read.csv("C:/Users/Yixin Sun/Documents/Assignment3/adult.csv", header = T)
+str(adult)
+```
+
+### data cleaning and divide into train and test
+```{r}
+adult <- adult[,c(1,5,10,13,15)]
+str(adult)
+set.seed(1234)
+adult$sex <- as.factor(adult$sex)
+adult$salary <- as.factor(adult$salary)
+i <- sample(1:nrow(adult), 0.8*nrow(adult), replace = F)
+train <- adult[i,]
+test <- adult[-i,]
+str(train)
+```
+
+
+### Random forest
+```{r}
+library(randomForest)
+set.seed(1234)
+rf <- randomForest(salary~., data=train, importance=TRUE)
+rf
+
+```
+
+### pred
+```{r}
+library(mltools)
+pred <- predict(rf, newdata=test, type="response")
+acc_rf <- mean(pred==test$salary)
+mcc_rf <- mcc(factor(pred), test$salary)
+print(paste("accuracy=", acc_rf))
+print(paste("mcc=", mcc_rf))
+
+
+```
+
+### Adabeg
+```{r}
+library(adabag)
+
+
+
+```
+
+
+
+
+### fastAdaboost
+
+```{r}
+
+library(fastAdaboost)
+set.seed(1234)
+fadab <- adaboost(salary~., train, 10)
+summary(fadab)
+```
+
+```{r}
+pred <- predict(fadab, newdata=test, type="response")
+
+acc_fadab <- mean(pred$class==test$salary)
+mcc_fadab <- mcc(pred$class, test$salary)
+print(paste("accuracy=", acc_fadab))
+print(paste("mcc=", mcc_fadab))
+```
+
+### XGBoost
+
+```{r}
+library(xgboost)
+train_label <- ifelse(train$salary==1, 1, 0)
+train_matrix <- data.matrix(train[, -31])
+model <- xgboost(data=train_matrix, label=train_label,
+                 nrounds=100, objective='binary:logistic')
+```
+
+```{r}
+test_label <- ifelse(test$salary==1, 1, 0)
+test_matrix <- data.matrix(test[, -31])
+probs <- predict(model, test_matrix)
+pred <- ifelse(probs>0.5, 1, 0)
+acc_xg <- mean(pred==test_label)
+mcc_xg <- mcc(pred, test_label)
+print(paste("accuracy=", acc_xg))
+print(paste("mcc=", mcc_xg))
+
+```
+
+
+
+### analysis
+#  In terms of accuracy, XGBoost is better than random forest and better than adaboost.
+#  In terms of the number of runs, XGBoost runs 100 times, random forest runs 500 times, and adaboost runs 10-20 times.
+#  From the metric comparison, the mcc of random forest is 0.42, the mcc of XGBoost is 0 (may be caused by data overfitting), and the mcc of adaboost is 0.55
