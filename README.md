@@ -37,3 +37,6 @@ The writeup explaining how they work can be found [here](https://github.com/Serr
   For Classification, my notebook is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook2Classification.Rmd) and the pdf output is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Notebook2Classification.pdf)
   For the Ensemble techniques, my R notebook was done with a partner and can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/Ensemble_techniques.Rmd) the pdf output is [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/6-Ensemble_techniques.pdf) and his narrative covering the techniques can be found [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/narrative.pdf)  
   
+  ## ML with sklearn
+  In this assignment, we gained experience with machine learning in sklearn on a small data set. This is first time using sklearn and I was able to get a good grasps on the difference between sklearn and R.  
+  You can see what I did [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ML%20with%20sklearn.ipynb%20-%20Colaboratory.pdf)
