@@ -39,4 +39,10 @@ The writeup explaining how they work can be found [here](https://github.com/Serr
   
   ## ML with sklearn
   In this assignment, we gained experience with machine learning in sklearn on a small data set. This is first time using sklearn and I was able to get a good grasps on the difference between sklearn and R.  
-  You can see what I did [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ML%20with%20sklearn.ipynb%20-%20Colaboratory.pdf)
+  You can see what I did [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ML%20with%20sklearn.ipynb%20-%20Colaboratory.pdf)  
+    
+  ## Image Classification  
+  I used python and familiarized myself with Keras and image classification.
+  I took a dataset with 5 different sets of images of flowers (about 1270 each) and created an program that classified the type of flowers.
+  You can see what I did [here](https://github.com/SerratedGraph77/CS-4374-Intro-to-Machine-Learning/blob/main/ImageClassification.ipynb%20-%20Colaboratory.pdf)  
+  
